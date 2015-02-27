@@ -51,6 +51,19 @@ LWM2M over MQTT makes use of a number of open source projects to work properly:
 ## Running the samples
 
 #### Building the project
+
+To build this project, you must have [ant] installed. In the command console, run the following
+```shell
+$ ant clean
+$ ant build
+```
+
+This will build the project and generate the jars for
+* LeshanStandalone.jar - The lwm2m server over MQTT
+* LwM2MRaspiClient.jar - The lwm2m client over MQTT for Raspberry Pi
+* LwM2MExampleClient.jar - The lwm2m client over MQTT for desktop machines
+* mqtt.properties - Properties file containing the connection details
+
 Edit the mqtt.properties to update mqtt broker, serverId
 ```javascript
 MQTT_SERVER = localhost
@@ -61,17 +74,6 @@ SERVER_ID = 56783
 CLIENT_APPLICATIONID = mqtt-client
 SERVER_APPLICATIONID = leshan-server
 ```
-
-You must have [ant] installed. Then in the command console, run the following
-```shell
-$ ant clean
-$ ant build
-```
-
-This will build the project and generate the jars for
-* LeshanStandalone.jar - The lwm2m server over MQTT
-* LwM2MRaspiClient.jar - The lwm2m client over MQTT for Raspberry Pi
-* LwM2MExampleClient.jar - The lwm2m client over MQTT for desktop machines
 
 #### Run lwm2m server
 
