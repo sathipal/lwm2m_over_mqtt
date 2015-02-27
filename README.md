@@ -64,7 +64,8 @@ This will build the project and generate the jars for
 * LwM2MExampleClient.jar - The lwm2m client over MQTT for desktop machines
 * mqtt.properties - Properties file containing the connection details
 
-Edit the mqtt.properties to update mqtt broker, serverId
+Edit the mqtt.properties to update mqtt broker, serverId, clientId and other parameters.
+
 ```javascript
 MQTT_SERVER = localhost
 MQTT_PORT = 1883
@@ -90,7 +91,7 @@ In your browser, open [http://localhost:8080] to view the lwm2m server dashboard
 
 #### Run lwm2m Client
 
-Run the following command in command console to start the lwm2m Client
+Run the following command in command console to start the lwm2m Client. `mqtt.properties` must be present in the same directory where you will run this program.
 ```shell
 $ cd jars
 //In raspberry Pi
@@ -134,7 +135,7 @@ Enter the command
     43
 ```
 
-All the updates that you do to the local resource can be viewed in the server's dashboard.
+All the updates that you do to the local resource can be viewed in the server's dashboard. So if you are running this client program from Raspberry Pi, you can view the live temperature. 
 
 ---
 ### Todo's
