@@ -84,7 +84,7 @@ $ java -classpath "LeshanStandalone.jar;..\leshan.jar;..\org.eclipse.paho.client
 $ java -classpath "LeshanStandalone.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
 ```
 
-In your browser, open http://localhost:8080 to view the lwm2m server dashboard
+In your browser, open [http://localhost:8080] to view the lwm2m server dashboard
 
 #### Run lwm2m Client
 
@@ -148,9 +148,10 @@ Enter the command
  - Eclipse Public License 
 
 ---
+[http://localhost:8080]:http://localhost:8080
 [ant]:http://ant.apache.org/
 [eclipse]:http://www.eclipse.org/
-[Paho Client]:http://twitter.com/thomasfuchs
+[Paho Client]:https://eclipse.org/paho/clients/java/
 [Leshan]:https://github.com/eclipse/leshan
 [Open Source Mosquitto Broker]:http://iot.eclipse.org/sandbox.html
 [git repository]:http://github.com/sathipal/lwm2m_over_mqtt
