@@ -45,6 +45,7 @@ LWM2M over MQTT makes use of a number of open source projects to work properly:
 * [Leshan] - OMA LwM2M implementation in java
 * [Open Source Mosquitto Broker] - This MQTT broker is hosted at eclipse 
 * [git repository] - Githubs repository where the artifacts are stored
+
 ---
 ### Installation
 
@@ -64,10 +65,12 @@ $ ant build.xml
  - Binding MQTT in Leshan client
  - Write Tests
  - Add Code Comments
+
 ---
 ###License
  - Eclipse Distribution License
  - Eclipse Public License 
+
 ---
 
 [eclipse]:http://www.eclipse.org/
