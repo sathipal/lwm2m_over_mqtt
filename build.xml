@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="LwM2M_over_MQTT">
+
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+	<property name="jars.location" value="jars" />
+
+
+	<path id="LwM2M_over_MQTT.classpath">
+		<pathelement location="bin" />
+		<pathelement location="leshan.jar" />
+		<pathelement location="org.eclipse.paho.client.mqttv3-1.0.0.jar" />
+	</path>
+	<target name="init">
+		<mkdir dir="bin" />
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="src">
+				<exclude name="**/*.launch" />
+				<exclude name="**/*.java" />
+				<exclude name="**/*.properties" />
+			</fileset>
+		</copy>
+		<mkdir dir="bin" />
+	</target>
+	<target name="clean">
+		<delete dir="bin" />
+		<delete dir="${jars.location}" />
+	</target>
+	<target depends="clean" name="cleanall" />
+
+	<target depends="build-jars" name="build" />
+
+
+	<target depends="init" name="build-project">
+
+		<javac debug="true" destdir="bin"
+			includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="LwM2M_over_MQTT.classpath" />
+		</javac>
+		<copy file="src/mqtt.properties" todir="${jars.location}/" />
+	</target>
+
+	<target
+		depends="build-project,LeshanStandalone,LwM2MExampleClient,LwM2MRaspiClient"
+		name="build-jars" />
+
+	<target name="LeshanStandalone">
+		<jar destfile="${jars.location}/LeshanStandalone.jar" basedir="bin">
+
+		    
+			<manifest>
+				<attribute name="Main-Class" value="leshan.standalone.LeshanStandalone" />
+			</manifest>
+
+		</jar>
+	</target>
+
+	<target name="LwM2MExampleClient">
+		<jar destfile="${jars.location}/LwM2MExampleClient.jar" basedir="bin">
+			
+		   
+			<manifest>
+				<attribute name="Main-Class" value="com.ibm.lwm2m.client.LwM2MExampleClient" />
+			</manifest>
+
+		</jar>
+
+	</target>
+
+	<target name="LwM2MRaspiClient">
+		<jar destfile="${jars.location}/LwM2MRaspiClient.jar" basedir="bin">
+
+		    <manifest>
+				<attribute name="Main-Class" value="com.ibm.lwm2m.client.LwM2MRaspiClient" />
+			</manifest>
+
+		</jar>
+
+	</target>
+
+</project>
