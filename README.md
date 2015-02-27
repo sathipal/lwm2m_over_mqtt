@@ -132,6 +132,7 @@ Enter the command
     43
 ```
 
+All the updates that you do to the local resource can be viewed in the server's dashboard.
 
 ---
 ### Todo's
