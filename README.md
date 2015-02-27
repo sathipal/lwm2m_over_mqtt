@@ -77,13 +77,13 @@ SERVER_APPLICATIONID = leshan-server
 
 #### Run lwm2m server
 
-Run the following command in command console to start the lwm2m server
+Run the following command in command console to start the lwm2m server. `mqtt.properties` must be present in the same directory where you will run this program.
 ```shell
 $ cd jars
 //in windows
-$ java -classpath "LeshanStandalone.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
+$ java -classpath ".;LeshanStandalone.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
 //in Linux
-$ java -classpath "LeshanStandalone.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
+$ java -classpath ".:LeshanStandalone.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
 ```
 
 In your browser, open [http://localhost:8080] to view the lwm2m server dashboard
@@ -94,11 +94,11 @@ Run the following command in command console to start the lwm2m Client
 ```shell
 $ cd jars
 //In raspberry Pi
-$  java -cp LwM2MRaspiClient.jar:org.eclipse.paho.client.mqttv3-1.0.0.jar:leshan.jar com.ibm.lwm2m.client.LwM2MRaspiClient
+$  java -cp .:LwM2MRaspiClient.jar:org.eclipse.paho.client.mqttv3-1.0.0.jar:leshan.jar com.ibm.lwm2m.client.LwM2MRaspiClient
 //in windows
-$ java -classpath "LwM2MExampleClient.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
+$ java -classpath ".;LwM2MExampleClient.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
 //in Linux
-$ java -classpath "LwM2MExampleClient.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
+$ java -classpath ".:LwM2MExampleClient.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
 ```
 
 After the client starts, following commands will be displayed
