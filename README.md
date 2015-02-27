@@ -47,15 +47,91 @@ LWM2M over MQTT makes use of a number of open source projects to work properly:
 * [git repository] - Githubs repository where the artifacts are stored
 
 ---
-### Installation
 
-You need to install git client
+## Running the samples
 
-```sh
-$ git clone [git repository] lwm2m
-$ cd lwm2m
-$ ant build.xml
+#### Building the project
+Edit the mqtt.properties to update mqtt broker, serverId
+```javascript
+MQTT_SERVER = localhost
+MQTT_PORT = 1883
+ORGID = eclipse
+CLIENT_ID = 10
+SERVER_ID = 56783
+CLIENT_APPLICATIONID = mqtt-client
+SERVER_APPLICATIONID = leshan-server
 ```
+
+You must have [ant] installed. Then in the command console, run the following
+```shell
+$ ant clean
+$ ant build
+```
+
+This will build the project and generate the jars for
+* LeshanStandalone.jar - The lwm2m server over MQTT
+* LwM2MRaspiClient.jar - The lwm2m client over MQTT for Raspberry Pi
+* LwM2MExampleClient.jar - The lwm2m client over MQTT for desktop machines
+
+#### Run lwm2m server
+
+Run the following command in command console to start the lwm2m server
+```shell
+$ cd jars
+//in windows
+$ java -classpath "LeshanStandalone.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
+//in Linux
+$ java -classpath "LeshanStandalone.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" leshan.standalone.LeshanStandalone
+```
+
+In your browser, open http://localhost:8080 to view the lwm2m server dashboard
+
+#### Run lwm2m Client
+
+Run the following command in command console to start the lwm2m Client
+```shell
+$ cd jars
+//In raspberry Pi
+$  java -cp LwM2MRaspiClient.jar:org.eclipse.paho.client.mqttv3-1.0.0.jar:leshan.jar com.ibm.lwm2m.client.LwM2MRaspiClient
+//in windows
+$ java -classpath "LwM2MExampleClient.jar;..\leshan.jar;..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
+//in Linux
+$ java -classpath "LwM2MExampleClient.jar:..\leshan.jar:..\org.eclipse.paho.client.mqttv3-1.0.0.jar" com.ibm.lwm2m.client.LwM2MExampleClient
+```
+
+After the client starts, following commands will be displayed
+```shell
+List of available commands
+ register :: Register this client to server
+ deregister :: deregister this client from the server
+ update-register :: updates the registeration
+ update :: (update <resource-id> <value>) update a local resource value
+ get :: (get <resource-id>) get a local resource value
+ >> Available Object and resource
+ >> IPSO temperature Object - <3303/0>
+ >> 3303/0/5700 - SensorValue
+ >> 3303/0/5601 - Minimum Measured Value
+ >> 3303/0/5602 - Maximum Measured Value
+ >> 3303/0/5603 - Min Range Value
+ >> 3303/0/5604 - Max Range Value
+Enter the command
+```
+
+* register - Run this command to register the device
+* deregister - Run this command to remove this device's registeration
+* update-register - Run this command to update this device's registeration
+* update - update the local resource value of this device. In this example, we update the sensor value(3303/0/5700) to 43
+```shell
+    Enter the command
+    update 3303/0/5700 43
+```
+* get - get the local resource value of this device. In this example, we get the sensor value(3303/0/5700)
+```shell
+    Enter the command
+    get 3303/0/5700
+    43
+```
+
 
 ---
 ### Todo's
@@ -72,7 +148,7 @@ $ ant build.xml
  - Eclipse Public License 
 
 ---
-
+[ant]:http://ant.apache.org/
 [eclipse]:http://www.eclipse.org/
 [Paho Client]:http://twitter.com/thomasfuchs
 [Leshan]:https://github.com/eclipse/leshan
